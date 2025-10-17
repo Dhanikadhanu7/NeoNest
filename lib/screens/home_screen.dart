@@ -12,26 +12,53 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: const Color(0xFF6A1B9A),
+      backgroundColor: const Color(0xFF6A1B9A),
       appBar: AppBar(title: const Text('NeoNest')),
-      
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildButton(context, 'Start Monitoring', const MonitoringScreen()),
-            const SizedBox(height: 16),
-            _buildButton(context, 'View History', const HistoryScreen()),
-            const SizedBox(height: 16),
-            _buildButton(context, 'Parent Chatbot', const ChatbotScreen()),
-            const SizedBox(height: 16),
-            _buildButton(context, 'Lullaby Player', const LullabyPlayerScreen()),
-            const SizedBox(height: 16),
-            _buildButton(context, 'Sleep Tracker', const SleepTrackerScreen()),
-            const SizedBox(height: 16),
-            _buildButton(context, 'Settings', const SettingsScreen()),
-          ],
-        ),
+      body: Row(
+        children: [
+          // LEFT SIDE - FULL IMAGE (60% width)
+          Expanded(
+            flex: 3,
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/baby_home.jpg'), // your image path
+                  fit: BoxFit.cover, // fills entire left section
+                ),
+              ),
+            ),
+          ),
+
+          // RIGHT SIDE - BUTTONS (40% width)
+          Expanded(
+            flex: 2,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 60), // pushes buttons to the right
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      _buildButton(context, 'Start Monitoring', const MonitoringScreen()),
+                      const SizedBox(height: 16),
+                      _buildButton(context, 'View History', const HistoryScreen()),
+                      const SizedBox(height: 16),
+                      _buildButton(context, 'Parent Chatbot', const ChatbotScreen()),
+                      const SizedBox(height: 16),
+                      _buildButton(context, 'Lullaby Player', const LullabyPlayerScreen()),
+                      const SizedBox(height: 16),
+                      _buildButton(context, 'Sleep Tracker', const SleepTrackerScreen()),
+                      const SizedBox(height: 16),
+                      _buildButton(context, 'Settings', const SettingsScreen()),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
